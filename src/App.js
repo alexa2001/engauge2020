@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Register from './components/Register';
 import Homepage from './components/Homepage';
 import Login from './components/Login';
+import FileUpload from './components/FileUpload';
+import Reports from './components/Reports';
 
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -20,6 +22,12 @@ const App = props => {
       </Route> 
       <Route exact path="/register">
         <Register/>
+      </Route>
+      <Route exact path="/fileupload">
+        <FileUpload/>
+      </Route>
+      <Route exact path="/reports">
+        <Reports/>
       </Route>
       <Route exact path="/login">
         <Login/>

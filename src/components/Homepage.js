@@ -31,6 +31,7 @@ class Homepage extends React.Component {
         <div class= "text">
           <div>{this.props.email}</div>
           <button onClick={() => this.props.firebase.logout()}>Logout</button>
+          <br/>
         </div>
       ) : (
         <div class="text">
