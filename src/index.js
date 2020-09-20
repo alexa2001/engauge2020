@@ -1,8 +1,11 @@
+
+// import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-// import './index.css';
 import App from './App';
+
+import { BrowserRouter } from 'react-router-dom';
+
 import { Provider } from 'react-redux';
 import firebase from 'firebase/app';
 import 'firebase/database';
@@ -13,6 +16,9 @@ import {
   ReactReduxFirebaseProvider,
   firebaseReducer,
 } from 'react-redux-firebase';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyAIYaOq-GsuIvs25To4j1_bIm6ShKe1CtQ",
   authDomain: "engauge2020-44155.firebaseapp.com",
@@ -24,10 +30,36 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+// firebase.functions().useFunctionsEmulator('http://localhost:5001');
+
+// Add firebase to reducers
+const rootReducer = combineReducers({
+  firebase: firebaseReducer,
+});
+
+// Create store with reducers and initial state
+const store = createStore(rootReducer, composeWithDevTools());
+
+// react-redux-firebase config
+const rrfConfig = {
+  preserveOnLogout: ['homepage'],
+  userProfile: 'users',
+};
+
+
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+};
 
 ReactDOM.render(
+  <Provider store={store}>
+    <ReactReduxFirebaseProvider {...rrfProps}>
       <BrowserRouter>
         <App />
-      </BrowserRouter>,
+      </BrowserRouter>
+    </ReactReduxFirebaseProvider>
+  </Provider>,
   document.getElementById('root'),
 );
