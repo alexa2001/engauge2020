@@ -8,7 +8,7 @@ export default function Routes() {
     return(
         <Router>
             <div className="route-show">
-                <Route exact path="/" render={
+                <Route path="/" render={
                     () => 
                     <>
                     <h1>Welcome!</h1>

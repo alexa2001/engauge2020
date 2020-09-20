@@ -17,9 +17,22 @@ const App = props => {
   }
   return (
     <Switch>
-      <Route exact path ="/">
+      <Route path ="/">
         <Homepage/>
       </Route> 
+      <Route exact path="/" render={
+          () => 
+          <>
+              <h1>Welcome!</h1>
+              <p style={{"font-size": "1.35em", "textAlign": "center"}}>
+                  Upload a recording of your session through the upload tab.
+                  <br /><br />
+                  Then, wait for 15 seconds before heading over to the reports tab.
+                  <br /><br />
+                  Your session report will be available there!
+              </p>
+          </>
+      } />
       <Route exact path="/register">
         <Register/>
       </Route>
